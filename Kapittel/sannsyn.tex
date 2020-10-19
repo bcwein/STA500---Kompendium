@@ -1,0 +1,62 @@
+\chapter{Sannsynlegheitsfordelingar}
+\section{Eksponensialfordeling}
+
+\subsection{Scale parametrisering}
+\begin{equation}
+    f(x) = \frac{1}{\beta} e^{-\frac{x}{\beta}},  \quad  x \geq 0
+\end{equation}
+
+\begin{equation}
+    F(x) = \int_{0}^x f(t) dt = 1 - e^{-\frac{x}{\beta}}
+\end{equation}
+
+\begin{equation}
+    E[X] = \int_{-\infty}^{\infty} xf(x) = \frac{1}{\beta}
+\end{equation}
+
+\begin{equation}
+    Var[X] = E[X^2] - E[X]^2 = \beta^2
+\end{equation}
+
+\subsection{Rate parametrisering}
+
+\begin{equation}
+    f(x) = \lambda e^{\lambda x},  \quad  x \geq 0
+\end{equation}
+
+\begin{equation}
+    F(x) = \int_{0}^x f(t) dt = 1 - e^{- \lambda x}
+\end{equation}
+
+\begin{equation}
+    E[X] = \int_{-\infty}^{\infty} xf(x) = \frac{1}{\lambda}
+\end{equation}
+
+\begin{equation}
+    Var[X] = E[X^2] - E[X]^2 = \frac{1}{\lambda^2}
+\end{equation}
+
+\subsection{Eksponensialfordelingen og minnelausheit}
+Eksponensialfordelinga blir ofte kalla for minnelaus. \cite{wiki:memless} Denne eigenskapen kan bli synt slik med følgande eksempel. Sjå føre deg at du har ei lyspære som har lyst i $300$ timar. Kva er sannsynlegheita for at den vil lyse i $500$ timar til? Om me lar $X$ være den stokastiske variabelen $X = \text{Levetid til ei lyspære i antal timar}$ så vil spørsmålet om levetid matematisk kunne formulerast slik (vha Bayes Teorem \cite{wiki:bayes}):
+
+\begin{equation}
+    P(X > 500 + 300 | X > 300) = \frac{P(X > 800 \cap X > 300)}{P(x > 300)} = \frac{P(X > 800)}{P(X > 300)} 
+\end{equation}
+
+Ved $P(X > x) = 1 - P(X \leq x) = 1 - (1 - e^\frac{-x}{\beta}) = e^\frac{-x}{\beta}$ får vi at
+
+\begin{equation}
+    \frac{P(X > 800)}{P(X > 300)} = \frac{e^\frac{-800}{\beta}}{e^\frac{-300}{\beta}} = e^\frac{-500}{\beta} = P(X > 500)
+\end{equation}
+
+Dette gir oss formelen
+
+\begin{equation}
+    P(X > t + s | X > s) = P(X > t)
+\end{equation}
+
+Dette kan tolkast som at systemet ikkje blir betre eller dårlegare over tid, at lyspæra er like god etter 300 timar som den var da den var ny og at sannsynet for at den ryk i framtida er uavhengig av kor lenge den har lyst frå før. Eksponensialfordelinga er den einaste kontinuerlige sannsynlegheitsfordelinga med denne eigenskapen. Den andre er geometrisk fordeling. 
+
+\subsubsection{NB: Vanleg misforståing}
+$P(X > 40 | X > 30) = P(X > 10)$ er korrekt bruk av formelen og \textbf{ikkje}
+$P(X > 40 | X > 30) = P(X > 40)$. 

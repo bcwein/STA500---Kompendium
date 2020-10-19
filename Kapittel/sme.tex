@@ -1,0 +1,11 @@
+\chapter{Sannsynlegheitsmaksimeringestimasjon}
+\textbf{Sannsynlegheitsmaksimeringsestimasjon} (SME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
+
+\section{SME og uforanderlighetsprinsippet}
+I følge dette svaret på \href{https://stats.stackexchange.com/questions/77573/invariance-property-of-mle-what-is-the-mle-of-theta2-of-normal-barx2}{stackexchange} som baserer seg på Probability and Statistical Inference\cite{mukhopadhyay2020probability}, for ein gitt SME $\boldsymbol{\hat{\theta}}$ for parameteren $\theta$, vil det for ein kvar funksjon $f(\theta)$ vere slik at SME for $f(\theta)$ er $f(\hat{\theta})$.
+
+Kravet for at dette skal være sant er at funksjonen $f$ må være ein ein-til-ein funksjon, formelt kalla ein \textbf{bijektiv} funksjon.
+
+\begin{equation}
+    SME: f(\theta) = f(\hat{\theta}), \qquad \text{Når f er bijektiv}
+\end{equation}

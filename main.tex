@@ -1,0 +1,82 @@
+% =========================================================================================
+% 
+% Nynorsk mal for eit enkelt notat tilpassa av Bjørn Christian Weinbach 20200129
+%
+% =========================================================================================
+
+% =========== <Inkludering av pakkar>===========
+\documentclass[10pt, a4paper, nynorsk]{report}          % For bokmål, endre nynorsk til norsk
+\usepackage[a4paper, total={6in, 8in}]{geometry}        % Juster margar
+\usepackage[utf8]{inputenc}                   	        % Leser inn Æ Ø Å
+\usepackage[nynorsk]{babel}                             % Nynorsk i overskrifter o.l. For bokm�l, endre nynorsk til norsk
+\usepackage[T1]{fontenc}                                % PS typer, betre når du lagar PDF-filer med pdflatex-kommandoen
+\usepackage{pslatex}                                    % For Times og Courier PS1 typer i PDFLaTeX
+\usepackage{graphicx}                                   % For å kunna bruke grafikk i dokumentet
+\usepackage{hyperref}                                   % Hyperreferanser/lenkjer i PDF-dokument
+\usepackage{float}                                      % Plassering av figurar
+\usepackage{amsmath}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cyan,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage{parskip}                                    % For å få rette avsnitt
+\setcounter{secnumdepth}{0}                             % Om verdien blir sett til 0 - null, blir ikkje avsnitta nummererte.
+                                                        % 1 - berre hovudansnitta blir nummererte (\section{})
+                                                        % 2 - hovudansnitta (\section{}) og underavsnitt (\subsection{}) blir nummererte
+                                                        % 3 - dei to før og underunderavsnitt (\subsubsection{}) blir nummererte
+% ========== </Inkludering av pakkar> ==========
+
+% ========== <Kommandoar> ==========
+% Lagar norsk punktliste
+% Aktuelle symbol for norsk punktliste:
+%
+% --, , standard LaTeX nivå 2, norsk nivå 1
+% \textbullet, standard LaTeX nivå 1, norsk nivå 2
+% \textasteriskcentered, standard LaTeX nivå 3
+% \textperiodcentered, standard LaTeX nivå 4
+% \textopenbullet
+%
+\renewcommand{\labelitemi}{--}                      % Korrekte norske lister
+\renewcommand{\labelitemii}{\textbullet}            % Korrekte norske lister
+\newcommand{\startsitat}{«}                         % Korrekte norske sitat
+\newcommand{\sluttsitat}{»}                         % Korrekte norske sitat
+\newcommand{\strek}{– }                             % Tankestrek
+% ========== </Kommandoar> ==========
+
+% ==========<Globale instillingar>==========
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+% ==========</Globale instillingar>==========
+
+% =========== <Hovudside>===========
+\title{Kompendium - STA500 UiS}                     % Definer tittel.
+\author{Bjørn Christian Weinbach}                   % Forfattar.
+\date{\today}                                       % Dato
+% ========== </Hovudside> ===========
+
+% =========== <Dokumentet>===========
+\begin{document}    
+\maketitle                                          % Lag overskrift.
+
+% =========== <Samandrag> ===========
+\begin{abstract}                                    % Blokk for samandrag.
+\input{Kapittel/samandrag.tex}                      % Input fil for samandrag.
+\end{abstract}
+% =========== </Samandrag> ==========
+
+% =========== <Sannsynlegheitsfordelingar> ===========
+\input{Kapittel/sannsyn.tex}                        % Sannsynlegheitsfordelingar
+% =========== </Sannsynlegheitsfordelingar> ===========
+
+% =========== <MLE> ===========
+\input{Kapittel/sme.tex}                            % Sannsylegheitsestimering
+% =========== </MLE> ===========
+
+\bibliography{referansar.bib}
+\bibliographystyle{unsrt}
+\end{document}
+% ========== </Dokumentet> ==========
