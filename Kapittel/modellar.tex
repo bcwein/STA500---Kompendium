@@ -1,0 +1,39 @@
+\chapter{Statistiske Modellar}
+
+\section{Poissonprosess}
+Poisson prosess er ein statistisk modell for tilfeldige prosessar. Kort oppsummert modellerer den antalet hendelsar i eit tidsintervall der dette antalet er poissonfordelt med parameter $\lambda$.
+
+\subsection{Telleprosess}
+Poissonprosessen er eit spesialtilfelle av den meir generelle \textbf{telleprosessen}. Ein telleprosess er definert som:
+
+\begin{enumerate}
+    \item $N(t) \geq 0$ 
+    \item $N(t)$ er eit heiltal
+    \item Om $s \leq t$ så er $N(s) \leq N(t)$
+\end{enumerate}
+
+\subsection{Definisjon poissonprosess}
+Poissonprosessen er ein telleprosess der:
+
+\begin{itemize}
+    \item $N(0) = 0$
+    \item Antal hendingar i disjunkte tidsintervall er uavhengige. $N(b) - N(a)$ er uavhengig frå $N(d) - N(c)$
+    \item $P(N(s + \Delta s) - N(s) = 1) \approx \lambda \Delta s$
+    \item $P(N(S + Delta s) - N(s) > 1) \approx 0$
+\end{itemize}
+
+Og det kan bli vist at:
+
+\begin{equation}
+    N(s + t) - N(s) \sim Poisson(\lambda)
+\end{equation}
+
+\subsection{Eigenskapar}
+Tiden til den første hendinga og mellom hendingar har ein eksponensialfordeling (Kap \ref{eksp}) med forventingsverdi $\frac{1}{\lambda}$. Sidan eksponensialfordelinger er minnelaus følger det at poissonprosessen også er minnelaus (kap \ref{memless}).
+
+Ein kan vise at tiden til den første hendinga er eksponensialfordelt slik:
+
+\begin{equation}
+    P(T_1 > t) = P(N(t) = 0) = \frac{(\lambda t)^0}{0!}e^{-\lambda t} = e^{-\lambda t}
+\end{equation}
+
