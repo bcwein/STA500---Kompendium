@@ -25,7 +25,7 @@ Poissonprosessen er ein telleprosess der:
 Og det kan bli vist at:
 
 \begin{equation}
-    N(s + t) - N(s) \sim Poisson(\lambda)
+    N(s + t) - N(s) \sim \text{Poisson}(\lambda)
 \end{equation}
 
 \subsection{Eigenskapar}
@@ -37,3 +37,59 @@ Ein kan vise at tiden til den første hendinga er eksponensialfordelt slik:
     P(T_1 > t) = P(N(t) = 0) = \frac{(\lambda t)^0}{0!}e^{-\lambda t} = e^{-\lambda t}
 \end{equation}
 
+\section{Markov Kjede}
+Markov kjeder er ein stokastisk modell for å beskrive ein sekvens av hendingar der sannsynlegheiten for kva hending som er den neste er kun avhengig av den noverande tilstanden. 
+
+Ein markov kjede kan matematisk beskrivast slik:
+
+\begin{equation}
+    \{X_n : n \in I\}
+\end{equation}
+
+der $I$ er eit endeleg eller tellbart-uendeleg sett med diskrete tidssteg. $X$ kan ta verdiar $x$ som er i settet $S$. Som kan vere endeleg eller tellbart-uendeleg.
+
+For kvart tidssteg $n$ har $X$ ein sannsynlegheit for å gå frå ein tilstand i $S$ til ein annan. Denne sannsynlegheita har følgande notasjon:
+
+\begin{equation}
+    p_{ij} = P(X_{n+1} = j | X_n = i)
+\end{equation}
+
+Som vi leser som \startsitat Sannsynet frå å gå frå tilstand $i$ til $j$\sluttsitat. Følgeleg av at dette er sannsynlegheitar må det nødvendigvis vere tilfellet at for alle $i$
+
+\begin{equation}
+    \sum_{j \in S} p_{ij} = 1
+\end{equation}
+
+\subsection{Overgangsmatrisa}
+Overgangsmatrisa er ein måte å representere alle sannsyn for å gå frå ein tilstand til ein annan. Eit døme på ei overgangsmatrise $P$ med tilstandsrom $S = \{0, 1\}$
+
+\begin{equation}
+    P = 
+    \begin{bmatrix}
+        0.6 & 0.4 \\
+        0.3 & 0.7
+    \end{bmatrix}
+\end{equation}
+
+Ein grunn til at slike matriser er nyttige er at sannsynlegheita for å havne i ein state etter $n$ steg er så enkelt som å rekne ut $P^n = PPP\dots P$ der ein tar matriseproduktet av $P$ med seg sjølv $n$ gonger.
+
+Så i vårt tilfelle, sannsynlegheita for å komme i tilstand $1$ etter to steg gitt at vi startar i tilstand $0$ er å lese rad $0$, kolonne $1$ i matrisa $P^2$. 
+
+\begin{equation}
+    P^2 = 
+    \begin{bmatrix}
+    0.48 & 0.52 \\
+    0.39 & 0.61
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    p_{01}^2 = 0.52
+\end{equation}
+
+
+
+\section{Kontinuerleg tid Markov Kjede}
+Kontinuerleg tid markov kjeder 
+
+\section{Køteori}
