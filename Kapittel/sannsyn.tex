@@ -20,20 +20,20 @@ Det er vanleg å beskrive eit utfall i og sannsynet for dette utfallet i $X$ med
     \item $P(X = x) = f(x)$
 \end{enumerate}
 
-Det er og vanleg å bruke den $kumulative sannsynlegheitsfordelinga F(x)$ for å beskrive sannsynet for å få ein verdi mindre eller lik $x$. Den kumulative sannsynlegheitsfordelinga kan matematisk beskrivast slik
+Det er og vanleg å bruke den kumulative sannsynlegheitsfordelinga $F(x)$ for å beskrive sannsynet for å få ein verdi mindre eller lik $x$. Den kumulative sannsynlegheitsfordelinga kan matematisk beskrivast slik
 
 \begin{equation}
     F(x) = P(X \leq x) = \sum_{t \leq x} f(t) \qquad \text{for} -\infty < x < \infty
 \end{equation}
 
-I statistikk er det og vanleg å måle \textbf{forventingsverdien} $E[X]$ og \textbf{variansen} $\text{Var}[X]$ til populasjonen. Gitt at vi har ein diskret sannsynlegheitsfordeling for populasjonen kan me rekne desse verdiane ut slik
+I statistikk er det og vanleg å måle \textbf{forventingsverdien} $E[X]$ og \textbf{variansen} $\text{Var}(X)$ til populasjonen. Gitt at vi har ein diskret sannsynlegheitsfordeling for populasjonen kan me rekne desse verdiane ut slik
 
 \begin{equation}
     E[X] = \sum_{i \in S} x_i p_i
 \end{equation}
 
 \begin{equation}
-    \text{Var}[X] = \sum_{i \in S} \left( x_i^2 p_i \right) - E[X]^2
+    \text{Var}(X) = \sum_{i \in S} \left( x_i^2 p_i \right) - E[X]^2
 \end{equation}
 
 \subsection{Binomisk fordeling}\label{chap:binomford}
@@ -59,7 +59,7 @@ Om $X$ er antalet vellukka hendingar i $n$ bernoulli forsøk er $X$ binomisk for
 \end{equation}
 
 \begin{equation}
-    E[X] = np, \qquad \text{Var}[X] = np(1-p)
+    E[X] = np, \qquad \text{Var}(X) = np(1-p)
 \end{equation}
 
 \subsubsection{Bernoulli Prosessen} \label{chap:bernoulli}
@@ -94,7 +94,7 @@ Om eksperimentet følger same eigenskap som bernoulli prosess en \ref{chap:berno
 \end{equation}
 
 \begin{equation}
-    E[X] = \frac{k}{p}, \qquad \text{Var}[X] = k\frac{1-p}{p^2}
+    E[X] = \frac{k}{p}, \qquad \text{Var}(X) = k\frac{1-p}{p^2}
 \end{equation}
 
 \subsubsection{Alternative parametriseringar}
@@ -107,6 +107,20 @@ Det er viktig å bemerke seg at det er fleire parametriseringar av negativ-binom
 \end{enumerate}
 
 Dei alternative parametriseringane blir ikkje gått gjennom her, men det er viktigt å vere obs på at desse finst.
+
+\subsection{Multinomisk fordeling}
+Ein multinomisk fordeling er ein fleirvariabels parameter og er derfor ikkje plotta som dei andre fordelingane.
+
+\begin{equation}
+    f(x:1, \dots, x_k; p_1, \dots, p_k, n) = \frac{n!}{x_1! \dots x_k!}p_1^{x_1}\dots p_k^{x_k}
+\end{equation}
+
+\begin{equation}
+    E[X_i] = np_i, \qquad \text{Var}(X_i) = np_i(1-p_i), \qquad \text{Cov}(X_i, X_j) = -np_ip_j
+\end{equation}
+
+\subsubsection{Multinomisk eksperiment}
+Eit binomisk eksperiment (sjå \ref{chap:bernoulli}) blir eit multinomisk eksperiment om me lar forsøka he fleire utfall. Dei andre eigenskapane er dei same.
 
 \subsection{Geometrisk fordeling}
 \begin{figure}[H]
@@ -131,7 +145,7 @@ Eit spesialtilfelle av negativ-binomisk fordeling er geometrisk fordeling. Gitt 
 \end{equation}
 
 \begin{equation}
-    E[X] = \frac{1}{p}, \qquad \text{Var}[X] = \frac{1-p}{p^2}
+    E[X] = \frac{1}{p}, \qquad \text{Var}(X) = \frac{1-p}{p^2}
 \end{equation}
 
 \subsection{Poissonfordeling}
@@ -157,7 +171,7 @@ Poissonfordelinga beskriver sannsynet for antalet hendingar som skjer i eit avgr
 \end{equation}
 
 \begin{equation}
-    E[X] = \lambda t, \qquad \text{Var}[X] = \lambda t
+    E[X] = \lambda t, \qquad \text{Var}(X) = \lambda t
 \end{equation}
 
 \subsubsection{Poisson prosessen}\label{chap:poissonpro}
@@ -193,7 +207,7 @@ Når $X$ er antal vellukka forsøk i eit hypergeometrisk eksperiment (sjå: \ref
 \end{equation}
 
 \begin{equation}
-    E[X] = n\frac{nk}{N}, \qquad \text{Var}[X] = \frac{N-n}{N-1}\cdot n \cdot \frac{k}{N}\left( 1 - \frac{k}{N}\right)
+    E[X] = n\frac{nk}{N}, \qquad \text{Var}(X) = \frac{N-n}{N-1}\cdot n \cdot \frac{k}{N}\left( 1 - \frac{k}{N}\right)
 \end{equation}
 
 \subsubsection{Hypergeometrisk eksperiment}\label{chap:hypergeom}
@@ -205,6 +219,32 @@ For å ha eit hypergeometrisk eksperiment må eksperimentet ha følgande eigensk
 \end{enumerate}
 
 Eit hypergeometrisk eksperiment kan derfor minne om eit binomisk, men eit hypergeometrisk eksperiment har eit sannsyn for eit vellukka forsøk $p$ som ikkje er konstant.
+
+\subsection{Diskret uniform fordeling}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/diskretuniformpmf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/diskretuniformcdf.png}
+  \end{minipage}
+\end{figure}
+
+Den diskrete uniforme fordelinga er ein fordeling der alle moglege utfall er like sannsynleg.
+
+\begin{equation}
+    f(x; a, b) = \frac{1}{n}, \qquad x \in \{a, a+1, \dots, b-1, b\}, \qquad n = b - a + 1, \qquad a \leq b
+\end{equation}
+
+\begin{equation}
+    F(x; a, b) = P(X \leq x) = \frac{\lfloor x \rfloor - a + 1}{n}
+\end{equation}
+
+\begin{equation}
+    E[X] = \frac{a + b}{2}, \qquad \text{Var}(X) = \frac{(b - a + 1)^2 - 1}{12}
+\end{equation}
 
 \section{Kontinuerlege sannsynlegheitsfordelingar}
 
