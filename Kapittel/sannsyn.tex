@@ -248,9 +248,169 @@ Den diskrete uniforme fordelinga er ein fordeling der alle moglege utfall er lik
 
 \section{Kontinuerlege sannsynlegheitsfordelingar}
 
-\subsection{Eksponensialfordeling}\label{eksp}
+\subsection{Definisjon}
+Stokastiske variablar kan og vere kontinuerlige, dvs at utfallsrommet liggjer på tallinja og er uendeleg (ikkje tellbart uendeleg). Dette gjer det umogleg å lage ordna par $(x, f(x))$ på same måte som ein ikkje kan liste opp alle dei reelle tala ${\rm I\!R}$. 
 
-\subsubsection{Skalaparametrisering}
+Med kontinuerlege sannsynlegheitsfordelingar gir det då ikkje meining om å snakke om sannsynet for at $X = a$ då sannsynlegheita for at $X$ er nøyaktig lik $a$ er $0$, dette fordi det er uendeleg andre utfall. (Å intuitivt forstå dette blir overlatt til den enkelte som leser dette). Med kontinuerlige sannsynlegheitsfordelingar brukar me då intervall når me reknar ut sannsynet. 
+
+Likevel kan sannsynlegheita for $X$ beskrivast med ein funksjon $f(x)$ som me kallar ein \textbf{sannsynlegheitstettleikfunksjon} (ikkje det samme som sannsynlegheitsmassefunksjon som det heiter i det diskrete tilfellet). Denne funksjonen må følge desse krava for å vere ein gyldig sannsynlegheitstettleikfunksjon:
+
+\begin{enumerate}
+    \item $f(x) \geq 0$, for alle $x \in {\rm I\!R}$.
+    \item  $\int_{-\infty}^{\infty} f(x) \, dx = 1$
+    \item $P(a < X < b) = \int_{a}^{b} f(x) \, dx$
+\end{enumerate}
+
+Krava over betyr at vi definerer arealet under funksjonen til å vere sannsynlegheita. Derfor må arealet under heile funksjonen vere $1$. Sannsynlegheita for at $X$ er mellom $a$ og $b$ er då arealet under grafen frå $a$ til $b$ og derfor må me integrere funksjonen.
+
+På same måte som den kumulative funksjonen i det diskrete tilfellet, har me ein kumulativ funksjon for kontinuerlege stokastiske variablar. Den er definert slik:
+
+\begin{equation}
+    F(x) = P(X \leq x) = \int_{-\infty}^{t} f(t) \, dt, \qquad -\infty < x < \infty
+\end{equation}
+
+Denne funksjonen gir då arealet under heile funksjonen fram til x. Som då er sannsynlegheita for at $X$ er mindre eller lik $x$.
+
+\textbf{Forventingsverdi} $E[X]$ og \textbf{Varians} $\text{Var}(X)$ er også definert for kontinuerlige stokastiske variablar. Desse reknar me ut slik
+
+\begin{equation}
+    \mu = E[X] = \int_{\infty}^{\infty} xf(x) \, dx
+\end{equation}
+
+\begin{equation}
+    \sigma^2 = \text{Var}(X) = E[(X-\mu^2)] = E[X^2] - E[X]^2 = \int_{\infty}^{\infty} (x-\mu)f(x) \, dx = \int_{\infty}^{\infty} x^2 f(x) \, dx - \mu^2 
+\end{equation}
+
+\subsection{Uniform fordeling}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/unifpdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/unifcdf.png}
+  \end{minipage}
+\end{figure}
+
+\begin{equation}
+    f(x; a, b) = u(x; a, b) = 
+    \begin{cases}
+    \frac{1}{b - a}, & x \in [a, b] \\
+    0, & \text{Otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    F(x; a, b) = P(X \leq x) = 
+    \begin{cases}
+        0, & x < a \\
+        \frac{x-a}{b-a}, & x \in [a, b] \\
+        1, & x > b
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    E[X] = \frac{a + b}{2}, \qquad \text{Var}(X) = \frac{(b-a)^2}{12}
+\end{equation}
+
+\subsection{Normalfordeling}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/normpdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/normcdf.png}
+  \end{minipage}
+\end{figure}
+
+\begin{equation}
+    f(x; \mu, \sigma) = n(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2\sigma^2}(x-\mu)^2}
+\end{equation}
+
+\begin{equation}
+    F(x; \mu, \sigma) = P(X \leq x) = \boldsymbol{\phi}\left(\frac{x - \mu}{\sigma}\right)
+\end{equation}
+
+Where $\boldsymbol{\phi}$ is the standard normal CDF which we often find using a table or tools like R programming language.
+
+\begin{equation}
+    E[X] = \mu, \qquad \text{Var}(X) = \sigma^2
+\end{equation}
+
+\subsection{Gammafordelingen}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/gammapdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/gammacdf.png}
+  \end{minipage}
+\end{figure}
+
+\textbf{Obs: } Gammafordelingen har 3 parametriseringar som er vanlege
+
+\begin{enumerate}
+    \item Med formparameter $k$ og skalaparameter $\theta$ \label{pointgamma}
+    \item Med formparameter $\alpha = k$ og hastigheitsparameter $\beta = \frac{1}{\theta}$ \label{pointgamma2}
+    \item Med formparameter k og gjennomsnittsparameter $\mu = k\theta = \frac{\alpha}{\beta}$
+\end{enumerate}
+
+Der me nyttar parametriseringa i punkt \ref{pointgamma}. Det er derfor viktig å merke seg at når ein jobbar med gammafordelingen (og fordelingar generelt) at det er forskjellige parametriseringar og at ein må vere sikker på at ein har tatt i bruk korrekt parametrisering.
+
+For å skape ekstra forvirring nyttar forfattaren og emnelæraren seg av $(k, \theta)$ parametrisering men bruker bokstavane $\alpha$ og $\beta$ for desse parametra. Dette må ikkje bli forveksla med $(\alpha, \beta)$ parametriseringa i punkt \ref{pointgamma2}. I dete faget er det derfor desse formlane som gjelder
+
+\begin{equation}
+    f(x; \alpha, \beta) = 
+    \begin{cases}
+        \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha - 1}e^{-x/\beta} & x \in [0, \infty] \\
+        0 & \text{Otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    F(x; \alpha, \beta) = \frac{1}{\Gamma(\alpha)}\gamma\left(\alpha, \frac{x}{\beta}\right)
+\end{equation}
+
+Der $\gamma$ er den inkomplette-gammafunksjonen \cite{wiki:incomgamma} og $\Gamma$ er gammafunksjonen \cite{walpole2012probability}. Desse reknar me i praksis ut vha verktøy som R. 
+
+\begin{equation}
+    E[X] = \alpha\beta, \qquad \text{Var}(X) = \alpha\beta^2
+\end{equation}
+
+\subsubsection{Spesialtilfelle}
+
+Gammafordelingen er ein fleksibel fordeling som har mange bruksområde. Det finnast 2 spesialtilfelle av gammafordelingen som er veldig etablert og som me ser på som sine eigne fullverdige fordelingar
+
+\begin{enumerate}
+    \item $\alpha = 1$ gir oss eksponensialfordelinga\ref{eksp} med $\beta$ som skalaparemeter\ref{eksp:skala}.
+    \item $\alpha = \nu/2$ og $\beta = 2$ gir oss $\chi^2$-fordelinga
+\end{enumerate}
+
+\subsubsection{Relasjon til poissonprosessen}
+Sjå kapittel \ref{memless} for å lese om eksponensialfordelingen og dens minnelausheit.
+
+Poissonfordelingen, eksponensialfordelingen og gammafordelingen er 3 viktige fordelingar som alle beskriver visse eigenskapar i poissonprosessen. Hugs at eksponensialfordelinga er ein gammafordeling med formparameter $\alpha = 1$. Tiden det tar mellom to poissonhendingar/tiden frå start til den første hendinga er eksponensialfordelt. Gammafordelingen generaliserer dette og formparameteren $\alpha$ kan bli tenkt på som antalet hendingar me ventar på.
+
+Tiden det då tar for at $n$ poissonhendingar skal ta plass er då gammafordelt med formparameter $\alpha = n$. Ein lineærkombinasjon av fleire eksonensialfordelingar er derfor gammafordelt.
+
+\subsection{Eksponensialfordeling}\label{eksp}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/eksppdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/ekspcdf.png}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{Skalaparametrisering}\label{eksp:skala}
 \begin{equation}
     f(x) = \frac{1}{\beta} e^{-\frac{x}{\beta}},  \quad  x \geq 0
 \end{equation}
@@ -260,14 +420,14 @@ Den diskrete uniforme fordelinga er ein fordeling der alle moglege utfall er lik
 \end{equation}
 
 \begin{equation}
-    E[X] = \int_{-\infty}^{\infty} xf(x) = \frac{1}{\beta}
+    E[X] = \int_{-\infty}^{\infty} xf(x) = \beta
 \end{equation}
 
 \begin{equation}
     Var[X] = E[X^2] - E[X]^2 = \beta^2
 \end{equation}
 
-\subsection{Hastigheitsparametrisering}
+\subsubsection{Hastigheitsparametrisering}
 
 \begin{equation}
     f(x) = \lambda e^{\lambda x},  \quad  x \geq 0
