@@ -334,11 +334,20 @@ Denne funksjonen gir då arealet under heile funksjonen fram til x. Som då er s
     F(x; \mu, \sigma) = P(X \leq x) = \boldsymbol{\phi}\left(\frac{x - \mu}{\sigma}\right)
 \end{equation}
 
-Where $\boldsymbol{\phi}$ is the standard normal CDF which we often find using a table or tools like R programming language.
-
 \begin{equation}
     E[X] = \mu, \qquad \text{Var}(X) = \sigma^2
 \end{equation}
+
+\subsubsection{Normalfordelingen i praksis}
+
+Når ein har ein massetettleiksfunksjon $f(x)$ for ein fordeling og ein ynskjer å finne den kumulative tettleiksfunsjonen $F(x)$ kan ein normalt benytte seg av $F(x) = \int_{-\infty}^{x} f(t) \,dt$. Men med
+$f(x; \mu, \sigma)$ er dette vanskeleg for avgrensa område under grafen. Ein kan heldigvis jobbe seg rundt dette med å lage ein tabell for standard normalfordeling.  Alle normalfordelingar kan skalerast til ein standard normalfordeling og derfor kan ein nytte ein tabell for standard normalfordeling for å gjere utrekningar på alle normalfordelingar. Omgjering av ein normalfordeling gjer ein slik:
+
+\begin{equation}
+    Z = \frac{X - \mu}{\sigma}
+\end{equation}
+
+Der $X$ er ein vilkårleg normalfordeling. 
 
 \subsection{Gammafordelingen}
 \begin{figure}[H]
@@ -412,11 +421,11 @@ Tiden det då tar for at $n$ poissonhendingar skal ta plass er då gammafordelt 
 
 \subsubsection{Skalaparametrisering}\label{eksp:skala}
 \begin{equation}
-    f(x) = \frac{1}{\beta} e^{-\frac{x}{\beta}},  \quad  x \geq 0
+    f(x; \beta) = \frac{1}{\beta} e^{-\frac{x}{\beta}},  \quad  x \geq 0
 \end{equation}
 
 \begin{equation}
-    F(x) = \int_{0}^x f(t) dt = 1 - e^{-\frac{x}{\beta}}
+    F(x; \beta) = \int_{0}^x f(t) dt = 1 - e^{-\frac{x}{\beta}}
 \end{equation}
 
 \begin{equation}
@@ -430,11 +439,11 @@ Tiden det då tar for at $n$ poissonhendingar skal ta plass er då gammafordelt 
 \subsubsection{Hastigheitsparametrisering}
 
 \begin{equation}
-    f(x) = \lambda e^{\lambda x},  \quad  x \geq 0
+    f(x; \lambda) = \lambda e^{\lambda x},  \quad  x \geq 0
 \end{equation}
 
 \begin{equation}
-    F(x) = \int_{0}^x f(t) dt = 1 - e^{- \lambda x}
+    F(x; \lambda) = \int_{0}^x f(t) dt = 1 - e^{- \lambda x}
 \end{equation}
 
 \begin{equation}
@@ -469,3 +478,37 @@ Dette kan tolkast som at systemet ikkje blir betre eller dårlegare over tid, at
 \subsubsection{NB: Vanleg misforståing}
 $P(X > 40 | X > 30) = P(X > 10)$ er korrekt bruk av formelen og \textbf{ikkje}
 $P(X > 40 | X > 30) = P(X > 40)$. 
+
+\subsection{\texorpdfstring{$\chi^2$}{chi}-fordelinga}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/chisqpdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/chisqcdf.png}
+  \end{minipage}
+\end{figure}
+
+$\chi^2$-fordelinga er eit viktig spesialtilfelle av gammafordelinga med parameter $\alpha = \frac{\nu}{2}$ og $\beta=2$. $\chi^2$-fordelinga har kun ein parameter $\nu$ som er friheitsgrad\ref{chap:friheitsgrad}. Denne fordelinga er ein viktig fordeling med anvendingar i hypotesetestar og estimering. 
+
+Kvifor $\chi^2$-fordelinga er nytta til hypotesetestar er langt utanfor pensum i faget. Kort oppsummert kan det forklarast ved at $\chi^2$-fordelinga er relatert til normalfordelingen gjennom at om ein tar ein fordeling $Z \sim N(0,1)$ så er $Z^2 \sim \chi^2$ fordelt med $\nu = 1$ og på grunn av sentralgrenseteoremet\ref{chap:sentralgrense} vil mange fordelingar kunne estimerast med ein normalfordeling.
+
+\begin{equation}
+    f(x; \nu) = \frac{1}{2^{\nu/2}\Gamma(\nu/2)}x^{\nu/2 - 1}e^{-x/2}, \qquad x > 0
+\end{equation}
+
+\begin{equation}
+    F(x; \nu) = \frac{1}{\Gamma(\nu / 2)} \gamma(\frac{\nu}{2}, \frac{x}{2}), \qquad x > 0
+\end{equation}
+
+\begin{equation}
+    E[X] = \nu
+\end{equation}
+
+\begin{equation}
+    Var[X] = E[X^2] - E[X]^2 = 2\nu
+\end{equation}
+
+\subsection{Gammafordeling}
