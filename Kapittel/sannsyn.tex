@@ -297,7 +297,7 @@ Denne funksjonen gir då arealet under heile funksjonen fram til x. Som då er s
     f(x; a, b) = u(x; a, b) = 
     \begin{cases}
     \frac{1}{b - a}, & x \in [a, b] \\
-    0, & \text{Otherwise}
+    0, & \text{Ellers}
     \end{cases}
 \end{equation}
 
@@ -377,7 +377,7 @@ For å skape ekstra forvirring nyttar forfattaren og emnelæraren seg av $(k, \t
     f(x; \alpha, \beta) = 
     \begin{cases}
         \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha - 1}e^{-x/\beta} & x \in [0, \infty] \\
-        0 & \text{Otherwise}
+        0 & \text{Ellers}
     \end{cases}
 \end{equation}
 
@@ -503,6 +503,8 @@ Kvifor $\chi^2$-fordelinga er nytta til hypotesetestar er langt utanfor pensum i
     F(x; \nu) = \frac{1}{\Gamma(\nu / 2)} \gamma(\frac{\nu}{2}, \frac{x}{2}), \qquad x > 0
 \end{equation}
 
+Der $\gamma$ er den inkomplette-gammafunksjonen \cite{wiki:incomgamma} og $\Gamma$ er gammafunksjonen \cite{walpole2012probability}. Desse reknar me i praksis ut vha verktøy som R. 
+
 \begin{equation}
     E[X] = \nu
 \end{equation}
@@ -511,4 +513,46 @@ Kvifor $\chi^2$-fordelinga er nytta til hypotesetestar er langt utanfor pensum i
     Var[X] = E[X^2] - E[X]^2 = 2\nu
 \end{equation}
 
-\subsection{Gammafordeling}
+\subsection{Betafordeling}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/betapdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/betacdf.png}
+  \end{minipage}
+\end{figure}
+
+Ein utvidelse av den uniforme fordelinga er betafordelinga. Den har to formparameter $\alpha$ og $\beta$ og når begge desse er lik $1$ har du den standard uniforme fordelinga på intervallet $[0, 1]$. Betafordelinger blir ofte brukt som ein konjugert à priori-fordeling i bayesiansk slutningsteori. Dette gjelder for bernoulli, binomsik, negativ binomsik og geometrisk fordeling.
+
+\begin{equation}
+    f(x; \alpha, \beta) = 
+    \begin{cases}
+        \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1 - x)^{\beta - 1} & 0 < x < 1 \\
+        0 & \text{Ellers}
+    \end{cases}
+\end{equation}
+
+der \textbf{Beta funksjonen} er definert som
+
+\begin{equation*}
+    B(\alpha, \beta) = \int_0^1 x^{\alpha - 1}(1 - x)^{\beta - 1} \,dx = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}, \qquad \text{for } \alpha, \beta > 0
+\end{equation*}
+
+der $\Gamma$ er gammafunksjonen \cite{walpole2012probability}. 
+
+\begin{equation}
+    F(x; \alpha, \beta) = I_x(\alpha, \beta) = \frac{B(x; \alpha, \beta)}{B(\alpha, \beta)}
+\end{equation}
+
+Der $I_x$ er den regulariserte ukomplette beta funksjonen og vi har den \textbf{ukomplette beta funksjonen:}
+
+\begin{equation*}
+    B(x; \alpha, \beta) = \int_0^x t^{\alpha-1}(1 - t)^{\beta - 1} \, dt
+\end{equation*}
+
+\begin{equation}
+    E[X] = \frac{\alpha}{\alpha + \beta}, \qquad \text{Var}(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
+\end{equation}

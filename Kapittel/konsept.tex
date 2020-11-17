@@ -20,3 +20,18 @@ pluss informasjonen at $\sum X = 69 \implies \bar{X}=6.9$. Der X er observasjone
 Ein intuitiv og uformell måte å tenke på dette er at friheitsgrad er eit mål på usikkerheit og når vi får informasjon (f.eks gjennom gjennomsnittet) så blir usikkerheiten mindre. Friheitsgrad er eit viktig konsept i statistikk siden det er avgjerande for å få rette estimat og for å rette p-verdiar i hypotesetestar.
 
 \section{Sentralgrenseteoremet}\label{chap:sentralgrense}
+
+Sentralgrenseteoremet fortel oss at summen / gjennomsnittet av uavhengige stokastiske variablar $X$ er normalfordelt sjølv om den underliggande fordelingen til $X$ ikkje er normalfordelt. Meir formelt, om me har $n$ utvalg frå $X$ med ukjent fordeling med forventingsverdi $\mu$ og varians $\sigma^2$ så vil den stokastiske variabelen
+
+\begin{equation}
+    Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(z; 0, 1)
+\end{equation}
+
+når $n \rightarrow \infty$. For å visualisere. Sjå på figur \ref{fig:CLT}. Der ser me at $\bar{X}$ for veldig forskjellige fordelingar av $X$ vil vere normalfordelt. Dette er eit veldig viktig konsept sidan det innebærer at mange problem der den underliggande fordelinga ikkje er normalfordelt kan løysast ved hjelp av normalfordelinga.
+
+\begin{figure}[H]
+    \centering
+    \label{fig:CLT}
+    \includegraphics[width=\textwidth]{bilete/CLT.png}
+    \caption{Demonstrasjon av sentralgrenseteoremet. Til venstre har me 1000 utvalg frå forskjellige fordelingar, høvevis uniform, eksponensiell og beta. Til høgre har me 1000 utvalg av gjennomsnittet til 100 verdier frå høvevis uniform eksponensiell og betafordelingen.}
+\end{figure}
