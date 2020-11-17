@@ -338,7 +338,7 @@ Denne funksjonen gir då arealet under heile funksjonen fram til x. Som då er s
     E[X] = \mu, \qquad \text{Var}(X) = \sigma^2
 \end{equation}
 
-\subsubsection{Normalfordelingen i praksis}
+\subsubsection{Normalfordelingen i praksis}\label{chap:normpraksis}
 
 Når ein har ein massetettleiksfunksjon $f(x)$ for ein fordeling og ein ynskjer å finne den kumulative tettleiksfunsjonen $F(x)$ kan ein normalt benytte seg av $F(x) = \int_{-\infty}^{x} f(t) \,dt$. Men med
 $f(x; \mu, \sigma)$ er dette vanskeleg for avgrensa område under grafen. Ein kan heldigvis jobbe seg rundt dette med å lage ein tabell for standard normalfordeling.  Alle normalfordelingar kan skalerast til ein standard normalfordeling og derfor kan ein nytte ein tabell for standard normalfordeling for å gjere utrekningar på alle normalfordelingar. Omgjering av ein normalfordeling gjer ein slik:
@@ -555,4 +555,45 @@ Der $I_x$ er den regulariserte ukomplette beta funksjonen og vi har den \textbf{
 
 \begin{equation}
     E[X] = \frac{\alpha}{\alpha + \beta}, \qquad \text{Var}(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
+\end{equation}
+
+\subsection{Lognormalfordeling}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{bilete/lognormalpdf.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{bilete/lognormalcdf.png}
+  \end{minipage}
+\end{figure}
+
+Lognormalfordeling er ein fordeling med mange bruksområde. Matematisk definerer vi den ved at gitt at ein variabel $X$ er lognormalfordelt så vil den stokastiske variabelen $Y$ vere normalfordelt når
+
+\begin{equation}
+    Y = \ln(X)
+\end{equation}
+ eller ein kan definere ein normalfordelt variabel $X$ og ein får då ein lognormalfordelt variabel $Y$ når \begin{equation}
+     Y = \exp(X)
+ \end{equation}
+
+Intuitivt, som demonstrert i kapittelet om \textbf{sentralgrenseteoremet}\ref{chap:sentralgrense} så er  summen/differansen/gjennomsnittet av fleire identiske variablar $X$ normalfordelt. Lognormalfordelinga får ein når ein har gjentatt multiplikasjon av ein variabel. Det er derfor ein mykje brukt fordeling for å modellere fenomen der gjentatt multiplikasjon dukker opp (som f.eks daglig prosentvekst).
+
+\begin{equation}
+    f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma x}e^{-\frac{1}{2\sigma^2}[ \ln(x) - \mu]}, \qquad x > 0
+\end{equation}
+
+\begin{equation}
+    F(x; \mu, \sigma) = P(X \leq x) = \boldsymbol{\phi}\left(\frac{\ln(x) - \mu}{\sigma}\right)
+\end{equation}
+
+Der $\phi$ er den standard normalfordelingen. Dette er på grunn av det same problemet som er diskutert i kapittel \ref{chap:normpraksis}. Normalfordelingen er vanskeleg å integrere for deler av intervallet og i praksis benytter me oss av tabellar eller programvare som R for å rekne ut den kumulative funksjonen.
+
+\begin{equation}
+    E[X] = e^{\mu + \sigma^2/2}
+\end{equation}
+
+\begin{equation}
+    Var[X] = E[X^2] - E[X]^2 = e^{2\mu + \sigma^2}(e^{\sigma^2} - 1)
 \end{equation}
