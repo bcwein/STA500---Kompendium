@@ -1,0 +1,48 @@
+\chapter{Ekstremverdistatistikk}
+Ekstremverdistatistikk er ein grein innan statistikken som fokuserer fordelingen til verdiar som er langt unna medianverdien. Frå eit gitt sortert sett med uavhengige observasjonar frå same fordeling kan ekstremverdistatistikk estimere sannsynet for å observere verdiar som er endå meir ekstreme.
+
+\section{Fordelinga av sorterte variblar}
+La $X_1, X_2, X_3, \dots, X_n$ vere $n$ uavhengige og identisk fordelte observasjonar med kumulativ sannsynsfunksjon $F_X(x) = P(X \leq x)$. Me sorterar i aukande rekkefølge $X_{(1)} \leq X_{(2)} \leq \dots \leq X_{(n)}$, dette kallar me ein sortert variabel. I denne variabelen har me
+
+\begin{equation*}
+    U = X_{(1)} = \text{min}(X_1, X_2, \dots, X_n)
+\end{equation*}
+
+\begin{equation*}
+    V = X_{(n)} = \text{max}(X_1, X_2, \dots, X_n)
+\end{equation*}
+
+Desse kallar me \textbf{ekstremvariablar}. Det er desse me er ute etter å finne fordelinga til. Fordelinga til $V$ kan me finne ved å nytte oss av det faktum at viss maksverdien er mindre eller $v$ så må alle dei andre verdiane og vere det.
+
+\begin{equation}
+\begin{aligned}
+    F_V(v) = & P(V \leq v) = P(\text{max}(X_1, X_2, \dots, X_n) \leq v) \\
+       = & P((X_1 \leq v) \cap (X_2 \leq v) \cap \dots \cap (X_n \leq v) \\
+       = & P(X_1 \leq v) \cdot P(X_2 \leq v) \cdot \dots \cdot P(X_n \leq v) \\
+       = & [F_X(v)]^n
+\end{aligned}
+\end{equation}
+
+Om $X$ er ein kontinuerleg variabel:
+
+\begin{equation}
+    f_V(v) = \frac{d}{dv} F_V(v) = n[F_X(v)]^{n-1}f_x(v)
+\end{equation}
+
+Me kan bruke liknande taknegang for ekstremvariabelen som er minst berre motsatt av det over
+
+\begin{equation}
+\begin{aligned}
+    F_U(u) = & P(U \leq u) = P(\text{min}(X_1, X_2, \dots, X_n) \leq u) \\
+       = & 1 - P(\text{min}(X_1, X_2, \dots, X_n) > u) \\
+       = & 1 - P((X_1 > u) \cap (X_2 > u) \cap \dots \cap (X_n > u)) \\
+       = & 1 - P(X_1 > u) \cdot P(X_2 > u) \cdot \dots \cdot P(X_n > u) \\
+       = & 1 - [1 - F_X(u)]^n
+\end{aligned}
+\end{equation}
+
+Om $X$ er ein kontinuerleg variabel:
+
+\begin{equation}
+    f_U(u) = \frac{d}{du} F_U(u) = n[1 - F_X(u)]^{n-1}f_x(u)
+\end{equation}
