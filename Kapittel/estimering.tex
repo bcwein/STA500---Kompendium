@@ -55,7 +55,22 @@ utvalgsområdet reknar ein ut
 Som nevnt over i diskusjonen om ein \textbf{statistikk}\ref{chap:statistikk} så er denne ein funksjon av eit utvalg og sidan det er mange moglege utvalg av ein populasjon så vil denne statistikken vere ein stokastisk variabel og dermed ha ein sannsynlegheitsfordeling. Denne kallar me for ein \textbf{utvalgsfordeling}.
 
 \subsection{Utvalgsfordelingen til \texorpdfstring{$\Bar{X}$}{Utvalgsjennomsnittet}}
+På grunn av \textbf{sentralgrenseteoremet}\ref{chap:sentralgrense} så vil utvalgsgjennomsnittet gå mot ein normalfordeling uavhengig av kva den underliggande fordelingen er. Dette gjer til at når me skal gjere slutningar om eit gjennomsnitt så kan me bruke normalfordelingen til hjelp.
 
+\subsection{Normalfordelingstilnerming av binomisk fordeling}
+Sidan sentralgrenseteoremet seier at ein sum av stokastiske variablar vil gå mot ein normalfordeling når $n \rightarrow \infty$. Sidan binomisk fordeling er fordelinga du får når du summerer fleire stokastiske variablar frå ein bernoullifordeling så vil ein binomisk fordeling gå mot ein normalfordeling om antalet forsøk er stor nok. 
+
+Eit krav vi ofte nytter for å avgjere om ein binomisk fordeling lar seg tilnermast med ein normalfordeling er
+\begin{equation}
+    np \geq 5
+\end{equation}
+
+\subsection{Utvalgsfordelingen til \texorpdfstring{$S^2$}{Utvalgsvariansen}}
+Hvis $S^2$ er variansen til ein eit tilfeldig utvalg av størrelse $n$ frå ein normalfordelt populasjon så vil statistikken
+\begin{equation}
+    \chi^2 = \frac{(n-1)S^2}{\sigma^2} = \frac{(X_i - \Bar{X})}{\sigma^2}
+\end{equation}
+Ha ein $\chi^2$-fordeling med $n - 1$ friheitsgrader.
 
 \section{Sannsynlegheitsmaksimeringestimasjon}
 \textbf{Sannsynlegheitsmaksimeringsestimasjon} (SME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
