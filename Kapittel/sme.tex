@@ -1,7 +1,63 @@
-\chapter{Sannsynlegheitsmaksimeringestimasjon}
+\chapter{Estimering}
+Når me i statistikk jobbar med sannsynlegheitsfordelingar så er det viktig å hugse på at slike sannsynlegheitsfordelingar gjelder for ein uendeleg \startsitat\textbf{populasjon}\sluttsitat og kan tenkast på som eit histogram der vi har uendelig mange utdrag. Då endrer dette \startsitat histogrammet\sluttsitat seg avhengig av parametra den tar inn. F.eks forventningsverdi og varians i ein normalfordeling.
+
+Men her er det begrensningar. Ein populasjon i statistikken kan vere endeleg som f.eks 
+\begin{itemize}
+    \item Befolkningen i ein nasjon.
+    \item Stjerner i mjelkevegen.
+    \item Karakterar til elevane i 9B på Kvåle Skule.
+\end{itemize}
+Eller uendelege og konseptuelle som f.eks
+\begin{itemize}
+    \item Alle mulige trafikkulykker.
+    \item Alle mulige lenger av eit kast.
+    \item Alle mulige måter ein sjukdom kan spre seg i ein befolkning.
+\end{itemize}
+
+På grunn av populasjonens natur kan det vere vanskeleg eller umogleg å kunne komplett beskrive heile populasjonen. Likevel ønsker vi å få innsikt i populasjonen og for å gjere dette tar vi eit \textbf{utvalg} av befolkningen og estimerer verdiar i populasjonen basert på utvalget. For å få gode og gyldige tall bør ein velge eit utvalg som ikkje er \textbf{partisk}. Den enklaste måten å gjere dette på er ved å gjere utvalget tilfeldig.
+
+\section{Statistikkar}
+Ein \textbf{statistikk} er i denne betydningen ein \startsitat funksjon av dei stokastiske variablane som utgjer eit tilfeldig utvalg av ein populasjon\sluttsitat. Ein statistikk er i seg sjølv ein stokastisk variabel då denne er ein funksjon av eit tilfeldig utvalg og ein populasjon kan ha mange utvalg og me forventar at slike statistikkar varierar. 
+
+\subsection{Lokasjonsmål på eit utvalg: Utvalgsgjennomsnitt, median og typetall}
+
+Dei vanlegaste statistikkane for å måle senter av dataen er gjennomsnitt, median og typetall. For eit utvalg data $X_1, X_2, \dots, X_n$ reknar me ut utvalgsgjennomsnittet
+\begin{equation}
+    \Bar{X} = \frac{1}{n}\sum_{i=1}^n X_i
+\end{equation}
+utvalgsmedianen
+\begin{equation}
+    \Tilde{x} = 
+    \begin{cases}
+    x_{(n+1) / 2}, & \text{Når x er oddetal}  \\
+    \frac{1}{2} (x_{n/2} + x_{n/2 + 1)}, & \text{Når x er partal}
+    \end{cases}
+\end{equation}
+og typetallet er det tallet i eit datasett som dukkar opp med høgast frekvens.
+
+\subsection{Variasjonsmål på eit utvalg: Utvalgsvarians, standardavvik og område}
+Dei vanlegaste statistikkane for å måle spredningen i dataen er varians, standardavvik og område. For eit utvalg data $X_1, X_2, \dots, X_n$ reknar me ut variansen
+\begin{equation}
+    S^2 = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \Bar{X})^2
+\end{equation}
+Som er summen av den kvadrerte avstanden fra gjennomsnittet. $n - 1$ dukker opp på grunn av at statistikken $\Bar{X}$ gjer til at vi får ein friheitsgrad mindre\ref{chap:friheitsgrad} og at estimatoren blir partisk mot utvalget om denne korreksjonen ikkje blir gjort. 
+
+utvalgsstandardavviket kan ein tenke på som gjennomsnittlig avstand fra gjennomsnittet og blir rekna ut 
+\begin{equation}
+    S = \sqrt{S^2}
+\end{equation}
+utvalgsområdet reknar ein ut 
+\begin{equation}
+    R = \text{max}\{X_1, X_2, \dots, X_n\} - \text{min}\{X_1, X_2, \dots, X_n\}
+\end{equation}
+
+\section{Utvalgsfordelingar}
+
+
+\section{Sannsynlegheitsmaksimeringestimasjon}
 \textbf{Sannsynlegheitsmaksimeringsestimasjon} (SME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
 
-\section{SME og uforanderlighetsprinsippet}
+\subsection{SME og uforanderlighetsprinsippet}
 I følge dette svaret på \href{https://stats.stackexchange.com/questions/77573/invariance-property-of-mle-what-is-the-mle-of-theta2-of-normal-barx2}{stackexchange} som baserer seg på Probability and Statistical Inference\cite{mukhopadhyay2020probability}, for ein gitt SME $\boldsymbol{\hat{\theta}}$ for parameteren $\theta$, vil det for ein kvar funksjon $f(\theta)$ vere slik at SME for $f(\theta)$ er $f(\hat{\theta})$.
 
 Kravet for at dette skal være sant er at funksjonen $f$ må være ein ein-til-ein funksjon, formelt kalla ein \textbf{bijektiv} funksjon.
