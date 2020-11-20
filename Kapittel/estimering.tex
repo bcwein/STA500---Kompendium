@@ -67,10 +67,92 @@ Eit krav vi ofte nytter for å avgjere om ein binomisk fordeling lar seg tilnerm
 
 \subsection{Utvalgsfordelingen til \texorpdfstring{$S^2$}{Utvalgsvariansen}}
 Hvis $S^2$ er variansen til ein eit tilfeldig utvalg av størrelse $n$ frå ein normalfordelt populasjon så vil statistikken
-\begin{equation}
+\begin{equation}\label{eq:vardist}
     \chi^2 = \frac{(n-1)S^2}{\sigma^2} = \frac{(X_i - \Bar{X})}{\sigma^2}
 \end{equation}
 Ha ein $\chi^2$-fordeling med $n - 1$ friheitsgrader.
+
+\section{t-fordelingen}
+Statistikkane over tar ofte utgangspunkt i at $\sigma$ til ein populasjon er kjent. I virkelegheita er dette i mange tilfelle ikkje kjent og ein er nøydd å supplementere ein statistikk ikkje berre med utvalgsgjennomsnittet men og utvalgsstandardavviket. Det er derfor naturleg å introdusere ein statistikk for $\mu$ er då
+\begin{equation}\label{eq:tstat}
+    T = \frac{\Bar{X} - \mu}{S / \sqrt{n}}
+\end{equation}
+Og denne statistikken vil då vere t-fordelt. T-fordelingen passar bedre å bruke i tilfelle der utvalget er $n < 30$ fordi når vi har liten $n$ så har utvalgsvariansen lett for å variere for forskjellige utvalg og vi trenger ein fordeling med lengre \startsitat haler\sluttsitat enn normalfordelingen (sjå plot av t-fordeling vs normalfordeling).
+
+Når $n > 30$ er ein tilnerming med normalfordeling stort sett godt nok og ein t-fordeling går asymptotisk mot ein normalfordeling når friheitsgraden $\nu \rightarrow \infty$.
+
+\section{Ikkje-partiske estimatorar}
+Sidan estimatorar er nettop som namnet tilseier, eit estimat. Vi ynksjer då sjølvsagt at ein estimator på ein parameter $\theta$ er nermast mogleg parameteren, med andre ord, ein estimator sin utvalgsfordeling har forventingsverdi lik $\theta$
+\begin{equation}
+    \mu_{\hat{\Theta}} = E[\hat{\Theta}] = \theta
+\end{equation}
+Statistikkar med denne eigenskapen kallar me for ikkje-partiske.
+
+\section{Varians til punktestimator}
+Estimatorar kan ha forskjellige estimatorar. Når ein estimator er ikkje-partisk og har den minste moglege variansen av alle ikkje-partiske estimatorar så er den den \textbf{mest effektive estimatoren}.
+
+\section{Intervallestimering}
+Til og med den mest effektive estimatoren vil me ikkje forvente at korrekt klarar å estimere ein parameter $\theta$. Derfor nyttar me oss av intervall estimat
+\begin{equation}
+    \hat{\theta_L} < \theta < \hat{\theta_U}
+\end{equation}
+der $\hat{\theta}_L$ og $\hat{\theta}_U$ er avhengige av ein statistikk $\boldsymbol{\hat{\Theta}}$. Me tar og hensyn til utvalgsfordelingen til statistikken $\boldsymbol{\hat{\Theta}}$.
+
+Det er då viktig å hugse på at når vi tar eit utvalg frå ein populasjon og reknar ut statistikkane $\boldsymbol{\hat{\Theta}_L}$ og $\boldsymbol{\hat{\Theta}_U}$ (lågaste og høgste grense). Me spesifiserer desse grensene etter eit nivå av signifikans som me spesifiserar. f.eks $\alpha = 0.05$ og finner grensene sånn at
+\begin{equation}
+    P(\boldsymbol{\hat{\Theta_L}} < \theta < \boldsymbol{\hat{\Theta_U}}) = 1 - \alpha
+\end{equation}
+Der me har ein $1-\alpha$ sannsynlegheit å velge eit utvalg fra populasjonen som gir oss $\boldsymbol{\hat{\Theta}_L}$ og $\boldsymbol{\hat{\Theta}_U}$ som inneheld $\theta$. Dette kallar me for eit konfidensintervall.
+
+\subsection{Eksempel på konfidensintervall}
+
+\textbf{Estimere gjennomsnitt med kjent varians}
+
+\begin{equation}
+    P\left(-z_{\alpha/2} < \frac{\Bar{X} - \mu}{\sigma / \sqrt{n}} < z_{\alpha/2}\right) = 1 - \alpha
+\end{equation}
+
+Så skriver me om transformasjonen midt i utrykket til å kun innehalde parameteren og vi får
+
+\begin{equation}
+        P\left(\Bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \Bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}} \right) = 1 - \alpha
+\end{equation}
+
+Dette gjer vi for alle konfidensintervall. Ta ein statistikk, transformer den til ein kjent fordeling (standard normal, t, $\chi^2$) og sett ulikheiten til å kun ha parameteren av interesse i midten. Når ein skal gjere ein einsidig test så setter ein opp ulikheiten i berre ein retning og løyser for parameteren.
+
+\textbf{Estimere gjennomsnitt med ukjent varians}
+
+I dette tilfellet nyttar me statistikken i likning \ref{eq:tstat}, setter opp ulikheita med T verdiar og skriver om ulikheita til å isolere parameteren av interesse åleine. Da får me
+\begin{equation}
+    P\left(\Bar{X} - t_{\alpha/2}\frac{S}{\sqrt{n}} < \mu < \Bar{X} + t_{\alpha/2}\frac{S}{\sqrt{n}} \right) = 1 - \alpha
+\end{equation}
+
+\textbf{Estimere varians}
+Me nytter oss av estimatoren og dens fordeling i likning \ref{eq:vardist} og setter opp konfidensintervallet
+\begin{equation}
+    P\left( \frac{(n-1)s^2}{\chi^2_{\alpha/2}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1 - \alpha/2}} \right) = 1 - \alpha
+\end{equation}
+Der $\chi^2$ har $n - 1$ friheitsgrader
+
+\subsection{Standardfeil}
+Ein statistikk har ein utvalgsfordeling og denne utvalgsfordelingen har eit standardavvik som me kallar for \textbf{standardfeilen} til estimatoren. I utvalgsgjennomsnittet sitt tilfelle så er denne stanrdardfeilen $\frac{\sigma}{\sqrt{n}}$
+
+\subsection{Estimere ein proporsjon}
+Lat oss seie at me vil estimere ein proporsjon $p$ med statistikken $\hat{P} = X/n$ er $X$ er antal velukka eksperiment i eit bernoulli eksperiment. Om me gjer fleire eksperiment og får ein verdi $x$ som er summen av velukka eksperiment av $n$ eksperiment så er $\hat{p}$ gjennomsnittet av alle eksperimenta og ved sentralgrenseteoremet vil denne statistikken vere normalfordelt med gjennomsnitt
+
+\begin{equation}
+    \mu_{\hat{p}} = E[\hat{P}] = \frac{np}{p} = p
+\end{equation}
+
+Som betyr at estimatoren er ikkje-partisk. Variansen
+\begin{equation}
+    \sigma^2_{\hat{p}} = \sigma^2_{X/n} = \frac{npq}{n^2} = \frac{pq}{n}
+\end{equation}s
+
+Ved å normalisere statistikken, endre på ulikheita og bruke verdiar for ein standard normalfordeling så får me
+\begin{equation}
+    P\left( \hat{P}-z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{P} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} \right)
+\end{equation}
 
 \section{Sannsynlegheitsmaksimeringestimasjon}
 \textbf{Sannsynlegheitsmaksimeringsestimasjon} (SME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
