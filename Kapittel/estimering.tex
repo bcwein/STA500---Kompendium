@@ -154,10 +154,63 @@ Ved å normalisere statistikken, endre på ulikheita og bruke verdiar for ein st
     P\left( \hat{P}-z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{P} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} \right)
 \end{equation}
 
-\section{Sannsynlegheitsmaksimeringestimasjon}
-\textbf{Sannsynlegheitsmaksimeringsestimasjon} (SME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
+\section{Rimelegheitsmaksimeringestimasjon}
+\textbf{Rimelegheitsmaksimeringestimasjon} (RME) bedre kjent i faget som \textbf{Maximum Likelihood Estimation} (MLE) er ein metode for å estimere ein parameter i ein sannsynlegheitsfordeling ved hjelp av maksimering av ein rimelegheitsfunksjon for estimatoren.
 
-\subsection{SME og uforanderlighetsprinsippet}
+\subsection{Rimeligheit og sannsynlegheit}
+
+For å forstå RME er det viktig at ein forstår forskjellen på rimelegheit og sannsynlegheit.
+
+\textbf{Sannsynlegheit} er ein funksjon som forteller deg at for ein gitt sannsynlegheitsfordeling $\theta$, kva er sannsynet for å observere ein observasjon $x$. Matematisk så skriver me
+\begin{equation}
+    p(x | \theta) = f_\theta(x)
+\end{equation}
+I det diskrete tilfellet. I det kontinuerlige tilfellet så nyttar me intervall som $P(X < x)$ og bruker den kumulative funksjonen $F(x)$. Det som er viktig å hugse på er at sannsynlegheit er det data $x$ som er variabelen\cite{wiki:likelihood}.
+
+\textbf{Rimelegheit} er ein funksjon som forteller deg at gitt nokon data, kva er ein rimeleg sannsynlegheitsfordeling at denne dataen kan ha komme frå? Med andre ord: det er sannsynlegheitsfordelinga som er variabelen til rimelegheita. Matematisk skriver me
+\begin{equation}
+    \mathcal{L}(\theta | \boldsymbol{x}) = f_\theta(\boldsymbol{x})
+\end{equation}
+Der $\boldsymbol{x}$ kan vere eitt enkelt datapunkt eller ein vektor med fleire datapunkt. Sjøl om det ser ut som at det er $x$ som er variabelen her er det $\theta$ som blir tenkt på som variabelen. Rimelegheitaen er funksjonsverdien til sannsynlegheitstettleikfunksjonen eller sannsynlegheitsmassefunksjonen. 
+
+\textbf{Eksempel}: Sjå for deg at me har $\theta \sim N(0, 1)$ og $\boldsymbol{x} = 0$. Sannsynlegheita for at me observerer data som er mindre eller lik $180$ i ein normalfordeling er $0.5$. Rimelegheita for at ein normalfordeling med snitt 0 og standardavvik 1 vil gi data som er lik $180$ er lik $f_{N(0,1)}(x) = 0.3989423$. 
+
+RME handlar om å finne ein sannsynlegheitsfordeling for eit gitt datasett $\boldsymbol{x}$ som maksimerer rimelegheitsfunksjonen. Intuitivt vil det då vere den rimeligaste sannsynlegheitsfordelinga me kan tenke oss at dataen kjem frå.
+
+\subsection{Framgangsmåte RME}
+RME handlar enkelt og greit om at me har lyst å maksimere
+\begin{equation}
+    \mathcal{L}(\theta ; \boldsymbol{x})
+\end{equation}
+Der $\theta$ er i eit sannsynlegheitsfordelingsrom etter vårt ønske. Som f.eks ein poissonfordeling. 
+
+Lat oss seie at i vårt tilfelle ynskjer me å finne den rimlegaste parameteren $\lambda$ av alle poissonfordelingar gitt dataen $x_1, x_2, \dots, x_n$. Rimelegheitsfunksjonen blir då
+
+\begin{equation}
+    \mathcal{L}(\lambda; x_1, x_2, \dots, x_n) = \prod_{i=1}^n f(x_i | \lambda) = \frac{e^{n\lambda}\lambda^{\sum_{i=1}^n x_i}}{\prod_{i=1}^n x_i!}
+\end{equation}
+
+og ved å ta logaritmen på begge sider får me
+
+\begin{equation}
+    \ln \mathcal{L}(\lambda; x_1, x_2, \dots, x_n) = -n\lambda + \sum_{i=1}^n \ln \lambda - \ln \prod_{i=1}^n x_i!
+\end{equation}
+
+deretter deriverer me med hensyn på $\lambda$
+
+\begin{equation}
+  \frac{\partial \ln \mathcal{L}(\lambda; x_1, x_2, \dots, x_n)}{\partial\lambda}  = -n + \sum_{i=1}^n \frac{x_i}{\lambda}
+\end{equation}
+
+Og setter den deriverte lik $0$ og løyser for $\lambda$ og vi får
+
+\begin{equation}
+    \hat{\lambda} = \sum_{i=1}^n \frac{x_i}{n} = \Bar{x}
+\end{equation}
+
+Og sidan den andrederiverte er eit negativt utrykk veit me at dette er eit minimumspunkt.
+
+\subsection{RME og uforanderlighetsprinsippet}
 I følge dette svaret på \href{https://stats.stackexchange.com/questions/77573/invariance-property-of-mle-what-is-the-mle-of-theta2-of-normal-barx2}{stackexchange} som baserer seg på Probability and Statistical Inference\cite{mukhopadhyay2020probability}, for ein gitt SME $\boldsymbol{\hat{\theta}}$ for parameteren $\theta$, vil det for ein kvar funksjon $f(\theta)$ vere slik at SME for $f(\theta)$ er $f(\hat{\theta})$.
 
 Kravet for at dette skal være sant er at funksjonen $f$ må være ein ein-til-ein funksjon, formelt kalla ein \textbf{bijektiv} funksjon.
