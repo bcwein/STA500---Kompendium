@@ -1,0 +1,71 @@
+\chapter{Funksjonar av stokastiske variablar}
+Lat oss seie at me veit fordelingen til $X$ og at me vil finne sannsynlegheita til
+\begin{equation}
+    Y = u(X)
+\end{equation}
+
+\section{Diskrete stokastiske variablar}
+Om X er ein diskret stokastisk variabel med sannsynlegheitsmassefunkjson $f(x)$. La $Y = u(X)$ definere ein bijektiv funksjon mellom verdiane i $X$ og $Y$ sånn at likninga $y = u(x)$ kan unikt bli løyst for x uttrykt gjennom y. Då er sannsynlegheitsfordelinga til $Y$
+\begin{equation}
+    g(y) = f[w(y)].
+\end{equation}
+
+\subsubsection{Eksempel}
+Lat oss seie me har funksjonen
+\begin{equation*}
+    Y = X^2
+\end{equation*}
+
+som betyr at viss me løyser for X
+
+\begin{equation*}
+    X = \sqrt{Y}
+\end{equation*}
+
+og $f_X()$ er lik 
+\begin{equation*}
+    f(x) = \frac{3}{4}\left(\frac{1}{4} \right)^{x-1}, \qquad x = 1, 2, 3, \dots
+\end{equation*}
+
+vil sannsynlegheitsfordeloinga til $Y$ bli
+
+\begin{equation*}
+   g(y) = f(\sqrt{y}) =  \frac{3}{4}\left(\frac{1}{4} \right)^{\sqrt{x}-1}, \qquad x = 1, 4, 9, \dots
+\end{equation*}
+
+Transformasjonar er relativt enkelt i det diskrete tilfellet sidan sannsyn i det diskrete tilfellet er funksjonsverdien til ein sannsynlegheitsmassefunksjon i punktet av interesse og at dette lar seg gjere ved å uttrykke $X$ i form av $Y$. 
+
+\section{Kontinuerlige stokastiske variablar}
+I det kontinuerlige tilfellet er det litt verre. Då utrykker me sannsyn i form av den kumulative funksjonen $F(x)$ og vi må derivere for å finne sannsynlegheitstettleikfunksjonen $f(x)$.
+
+\subsection{Formelen og bevis}
+Formelen i det diskrete tilfellet er:
+\begin{equation}
+    g(y) = f[w(y)][J].
+\end{equation}
+Der $J$ er jacobimatrisa. Grunnen til dette forklart uformelt er at sannsyn i det kontinuerlige tilfellet er sannsynlegheit oppgit i form av intervall og den kumulative sannsynlegheitstettleiken og for å finne fordelinga må vi da derivere. 
+
+\textbf{Bevis fra forelesing}
+Anta at v $Y = u(X)$ der $u$ er ein bijektiv funksjon.
+
+\begin{enumerate}
+    \item $u$ er aukande
+        \begin{equation}
+            \begin{split}
+                F_Y(y) & = P(Y \leq y) = P(X \leq w(x)) = F_X(w(y)) \\
+                g(y) & = F'_Y(y) = \frac{d}{dy}F_X(w(y)) = f(w(y))w'(y) = f(w(y))|w'(y)|
+            \end{split}
+        \end{equation}
+    \item $u$ er minkande
+        \begin{equation}
+            \begin{split}
+                F_Y(y) & = P(Y \geq y) = 1 - P(X \leq w(x)) = 1 - F_X(w(y)) \\
+                g(y) & = \frac{d}{dy}(1 - F_X(w(y))) = -f(w(y))w'(y) =  f(w(y))|w'(y)|
+            \end{split}
+        \end{equation}
+\end{enumerate}
+
+Det er fleire transformasjonar som er viktige i kurset. Sjå formelarket.
+
+\section{Summen av stokastiske variablar}
+

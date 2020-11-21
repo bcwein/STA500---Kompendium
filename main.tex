@@ -14,8 +14,8 @@
 \usepackage{graphicx}                                   % For å kunna bruke grafikk i dokumentet
 \usepackage{hyperref}                                   % Hyperreferanser/lenkjer i PDF-dokument
 \usepackage{float}                                      % Plassering av figurar
-\usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{amsmath}                                    % Under er pakker for mattesymbol og notasjon
+\usepackage{amssymb}                                    % -||-
 \hypersetup{
     colorlinks=true,
     linkcolor=cyan,
@@ -72,6 +72,7 @@
 % =========== <Hovudtekst> ===========
 \tableofcontents
 \input{Kapittel/sannsyn.tex}                        % Sannsynlegheitsfordelingar
+\input{Kapittel/funksjoner.tex}                     % Funksjoner av stokastiske variablar
 \input{Kapittel/ekstremverdistatistikk}             % Ekstremverdistatistikk
 \input{Kapittel/estimering.tex}                     % Estimering
 \input{Kapittel/modellar}                           % Statistiske modellar
