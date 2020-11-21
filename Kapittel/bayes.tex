@@ -1,0 +1,29 @@
+\chapter{Bayesisk statistikk}
+
+Statistikken me har sett på i dei andre kapittela i dette kompendiet er innanfor det me kjenner som \textbf{klassisk statistikk}. I den klassiske statistikken antar me at ein paramter $\theta$ er satt og me bruker data $\boldsymbol{y}$ til å estimere denne parameteren. I bayesisk statistikk er filosofien at $\theta$ har ein sannsynlegheitsfordeling på lik linje med dataen. I bayesisk analyse opererer me med den simultante fordelinga $p(\theta, \boldsymbol{y})$ og vår tru på $\theta$ $P(\theta | \boldsymbol{y})$. Intuisjonen bak bayesisk statistikk er at vi oppdaterer vår overbevisning om fordelingen $\theta$ basert på kunnskap me har i forkant og korleis me oppdaterer denne basert på nye data.
+
+\section{Grunnleggande om bayesisk modellering}
+Arbeidsflyyten i bayesisk analyse på data $\boldsymbol{y}$ er ofte gjort i følgande steg:
+
+\begin{enumerate}
+
+    \item Bestem ein parameter $\theta$ og spesifiser a priori kunnskapen om fordelinga til $\theta$.
+    \item Spesifiser observasjonen betinga på $\theta$. Dette er det samme som rimeligheitsfunksjonen 
+    \begin{equation}
+        p(\boldsymbol{y} | \theta) = f_\theta(\boldsymbol{y}) = \mathcal{L}(\boldsymbol{y}) 
+    \end{equation}
+    \item Den simultante fordelinga $(\boldsymbol{y}, \theta)$ er tilgjengeleg via bayes teorem og dette er vår a posteriori
+    \begin{equation}
+        p(\theta|\boldsymbol{y}) = \frac{p(\boldsymbol{y}, \theta)}{p(\boldsymbol{y})} = \\
+        \frac{\mathcal{L}(\theta)p(\theta)}{\int\mathcal{L}(\theta)p(\theta) \,d\theta} = c\mathcal{L}(\theta)p(\theta)
+    \end{equation}
+    der c er ein uvesentleg konstant.
+    \item No har me ein beskrivelse av vår overbevisning til $\theta$ i form av ein sannsynlegheitsfordeling. Me kan utføre følgande utrekningar for å gjere slutningar om $\theta$. I bayesisk statistikk har me bayesestimatet (som minnar om gjennomsnittet)
+    \begin{equation}
+        \hat{\theta_{\mathrm{Bayes}}} = \int \theta p(\theta | \boldsymbol{y}) \,d\theta,
+    \end{equation}
+    og truverdigheitsintervallet med ein truverdigheitsmengde $1 - \alpha$
+    \begin{equation}
+        \int_{\theta_\mathrm{L}}^{\mathrm{U}} p(\theta | \boldsymbol{y}) \,d\theta = 1 - \alpha
+    \end{equation}
+\end{enumerate}
