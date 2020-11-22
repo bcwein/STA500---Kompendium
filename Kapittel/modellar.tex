@@ -87,9 +87,66 @@ Så i vårt tilfelle, sannsynlegheita for å komme i tilstand $1$ etter to steg 
     p_{01}^2 = 0.52
 \end{equation}
 
+\subsection{Klassifisering av markovkjeder}
+Markovkjeder har forskjellige eigenskapar, desse eigenskapane hjelper oss i å gjere slutningar om markovkjedene og er viktige å forstå.
+
+Sjå føre deg eit vilkårleg markovkjede med tilstandsrom $\mathcal{S}$
+\begin{itemize}
+    \item Tilstand $j$ er sagt å være \textbf{tilgjengeleg} frå tilstand $i$ om det er ein sannsynlegheit $P(X_{n+\delta t} = j | X_n = i) > 0$. Notasjon: $j \rightarrow i$.
+    \item To tilstandar er sagt å \textbf{kommunisere} om $i \rightarrow j$ og $j \rightarrow i$. Notasjon: $i \leftrightarrow j$.
+    \item Tilstandsrommet $\mathcal{S}$ kan bli delt inn i fleire \textbf{klassar} av tilstandard der alle tilstandane i ei klasse kommuniserer med kvarandre og ikkje med andre tilstandard i andre klassar.
+    \item Er det berre ein klasse (alle tilstandard kommuniserar) så er markov kjeden \textbf{ikkje-reduserbar}.
+\end{itemize}
+
+For ein markov kjede la $R_i$ vere notasjon for sannsynlegheita for å starte å starte u tilstand $i$ og komme tilbake til tilstand $j$. Då er tilstanden $i$ sagt å vere
+\begin{itemize}
+    \item \textbf{tilbakevendande} om $R_i$ = 1 (garantert å komme tilbake)
+    \item \textbf{flyktig} om $R_i < 1$ (ikkje garantert å komme tilbake)
+\end{itemize}
+
+På engelsk og i faget blir dette høvevis kalla \textbf{recurrent} og \textbf{transient}.
+
+\subsection{Eigenskapar til tilbakevendande og flyktige tilstandard}
+\begin{itemize}
+    \item Flyktige tilstandar er berre besøkt eit endeleg antal gonger.
+    \item Eit endeleg-tilstands markov kjede har minst ein tilbakevendande tilstand.
+    \item Om ein tilstand i ein klasse er tilbakevendade så er alle i klassen det.
+    \item Om ein tilstand i ein klasse er flyktig, så er alle i klassen det.
+    \item I ein ikkje-reduserbar markov kjede er alle tilstandar anten tilbakevendande eller flyktige.
+    \item Når ein markov kjede går inn i ein tilbakevendande classe, så vil den bli i denne klassen for alltid.
+\end{itemize}
+
+\subsection{Periode}
+Ein tilstands periode er den største felles divisoren av $n_1, n_2, n_3, \dots$ der $p_{ii}^{n_1} > 0$, $p_{ii}^{n_2} > 0$, $\dots$ der $p_{ii}^{n} = 0$ for alle $n \notin \{n1, n2, \dots\}$. Når perioden er 1 så er tilstanden \textbf{aperiodisk}. 
+
+\subsection{stabile sannsynleheiter}
+
+Ved å ta matriseproduktet av ein overgangsmatrise fleire konger så kan denne konvergere. Da har me det som me kallar \textbf{stabile sannsynlegheiter}.
+Matematisk
+
+\begin{equation}
+    \pi_j = \lim_{m \rightarrow \infty} p^{m}_{ij}
+\end{equation}
+
+Stavile sannsynlegheiter eksisterar om markov kjeden er:
+
+\begin{itemize}
+    \item ikkje-reduserbar
+    \item positiv tilbakevendande (gjennomsnittleg overgangar mellom 2 besøk er endeleg)
+    \item aperiodisk
+\end{itemize}
 
 
-\section{Kontinuerleg tid Markov Kjede}
-Kontinuerleg tid markov kjeder 
 
-\section{Køteori}
+\section{Kontinuerleg Markov Kjede}
+Notasjon for ein kontinuerleg markov kjede
+\begin{equation}
+    {X(t) : t \geq 0}
+\end{equation}
+MÅ det vere tilfellet at
+\begin{equation}
+\begin{split}
+    P(X(s + t) = j | X(s) = i, X(u) = x(u)  & \text{for } 0 \leq u < s) \\
+    = P(X(s + t) = j | X(s) = i) &
+\end{split}
+\end{equation}
